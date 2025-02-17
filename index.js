@@ -23,10 +23,13 @@ class Sprite {
 
     update(){
         this.draw();
+
         this.position.y += this.velocity.y
 
-        if (this.position.y + this.height + this.velocity >= canvas.height){
+        if (this.position.y + this.height + this.velocity.y >= canvas.height){
             this.velocity.y = 0;
+        } else {
+            this.velocity.y += gravity;
         }
     }
 
@@ -40,7 +43,7 @@ const player = new Sprite({
     },
     velocity : {
         x:0,
-        y:10
+        y: 0
     }
 })
 
@@ -52,7 +55,7 @@ const enemy = new Sprite({
     },
     velocity : {
         x:0,
-        y:10
+        y: 0
     }
 })
 
