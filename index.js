@@ -68,6 +68,8 @@ const keys = {
     }
 }
 
+let lastKey;
+
 function animate(){
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black';
@@ -75,9 +77,9 @@ function animate(){
     player.update()
     enemy.update()
 
-    if (keys.a.pressed){
+    if (keys.a.pressed && lastKey === 'a'){
         player.velocity.x = -1
-    } else if(keys.d.pressed){
+    } else if(keys.d.pressed && lastKey === 'd'){
         player.velocity.x = 1
     } 
     // WE DIFFER HERE
@@ -91,9 +93,11 @@ document.addEventListener('keydown', (event) => {
     switch (event.key){
         case 'd':
             keys.d.pressed = true;
+            lastKey = 'd'
         break
         case 'a':
             keys.a.pressed = true;
+            lastKey = 'a'
         break
         // case 's':
         //     player.velocity.y + 30;
