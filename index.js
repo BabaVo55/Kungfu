@@ -62,6 +62,7 @@ const enemy = new Sprite({
 
 
 const keys = {
+    // Player bindings
     a: {
         pressed: false
     },
@@ -71,6 +72,8 @@ const keys = {
     w: {
         pressed: false
     },
+
+    // Enemy bindings
     ArrowRight: {
         pressed: false
     }, 
@@ -99,12 +102,11 @@ function animate(){
         player.velocity.x = 0;
     }
     
-    if (keys.ArrowLeft && enemy.lastPressedKey === 'ArrowLeft'){
+    if (keys.ArrowLeft.pressed && enemy.lastPressedKey === 'ArrowLeft'){
         enemy.velocity.x = -1; 
-    } else if (keys.ArrowRight && enemy.lastPressedKey === 'ArrowRight'){
+    } else if (keys.ArrowRight.pressed && enemy.lastPressedKey === 'ArrowRight'){
         enemy.velocity.x = 1;
-    } 
-    else {
+    } else {
         enemy.velocity.x = 0;
     }
 }
