@@ -14,12 +14,14 @@ class Sprite {
         this.velocity = velocity;
         this.type = type
         this.height = 150
+        this.width = 50
         this.lastPressedKey;
         this.attackBoxPlayer = {
             position: this.position,
             width: 100,
             height: 10,
-            
+            offset: 50
+
         }
         this.attackBoxEnemy = {
             position: this.position,
@@ -31,16 +33,16 @@ class Sprite {
 
     draw(){
         c.fillStyle = 'red'
-        c.fillRect(this.position.x, this.position.y, 50, this.height);
+        c.fillRect(this.position.x, this.position.y, this.width, this.height);
         
         //Attack Box
         if (this.type === 'player'){
             c.fillStyle = 'yellow'
-            c.fillRect(this.attackBoxPlayer.position.x + 50, this.attackBoxPlayer.position.y, this.attackBoxPlayer.width, this.attackBoxPlayer.height)
+            c.fillRect(this.attackBoxPlayer.position.x + this.attackBoxPlayer.offset, this.attackBoxPlayer.position.y, this.attackBoxPlayer.width, this.attackBoxPlayer.height)
 
         }else{
             c.fillStyle = 'white'
-            c.fillRect(this.attackBoxEnemy.position.x - 100, this.attackBoxEnemy.position.y, this.attackBoxEnemy.width, this.attackBoxEnemy.height)
+            c.fillRect(this.attackBoxEnemy.position.x - 100, this.attackBoxEnemy.position.y + 30, this.attackBoxEnemy.width, this.attackBoxEnemy.height)
 
         }
     }
@@ -123,21 +125,34 @@ function animate(){
     // player.velocity.x = 0;
     // enemy.velocity.x = 0
 
+
+    // Player Movement Logic
     if (keys.a.pressed && player.lastPressedKey === 'a'){
         player.velocity.x = -10;
-    } else if (keys.d.pressed && player.lastPressedKey === 'd') {
+    } 
+    else if (keys.d.pressed && player.lastPressedKey === 'd') {
         player.velocity.x = 10;
-    } else {
+    } 
+    else {
         player.velocity.x = 0;
     }
     
+    // Enemy Movement Logic
     if (keys.ArrowLeft.pressed && enemy.lastPressedKey === 'ArrowLeft'){
         enemy.velocity.x = -10; 
-    } else if (keys.ArrowRight.pressed && enemy.lastPressedKey === 'ArrowRight'){
+    } 
+    else if (keys.ArrowRight.pressed && enemy.lastPressedKey === 'ArrowRight'){
         enemy.velocity.x = 10;
-    } else {
+    } 
+    else {
         enemy.velocity.x = 0;
     }
+
+    //Collision Detection System
+
+    if (player.attackBoxPlayer.position.x + player.attackBoxPlayer.width + player.attackBoxPlayer.offset >= enemy.position.x && player.attackBoxPlayer.position.x < enemy.position.x + enemy.width){
+        console.log('health down by 10')
+    } 
 }
 
 
