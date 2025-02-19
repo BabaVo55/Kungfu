@@ -36,9 +36,10 @@ class Sprite {
 
 }
 
+
 const player = new Sprite({
     position : { 
-        x:0,
+        x:200,
         y:0
     },
     velocity : {
@@ -48,10 +49,10 @@ const player = new Sprite({
 })
 
 const enemy = new Sprite({
-   position : {
-    x: 400,
-    y: 100,
-
+    position : {
+        x: 700,
+        y: 100,
+        
     },
     velocity : {
         x:0,
@@ -59,16 +60,20 @@ const enemy = new Sprite({
     }
 })
 
+
 const keys = {
     a: {
         pressed: false
     },
     d: {
         pressed: false
+    },
+    w: {
+        pressed: false
     }
 }
 
-let lastKey;
+let lastPressedKey
 
 function animate(){
     window.requestAnimationFrame(animate)
@@ -77,56 +82,60 @@ function animate(){
     player.update()
     enemy.update()
 
-    if (keys.a.pressed && lastKey === 'a'){
+    if (keys.a.pressed && lastPressedKey === 'a'){
         player.velocity.x = -1
-    } else if(keys.d.pressed && lastKey === 'd'){
+    } else if (keys.d.pressed && lastPressedKey === 'd') {
         player.velocity.x = 1
-    } 
-    // WE DIFFER HERE
-    else {
+    } else if (keys.w.pressed && lastPressedKey === 'w') {
+        player.velocity.y = -10;
+        
+    } else {
         player.velocity.x = 0
     }
 }
 
+
+
 animate()
 document.addEventListener('keydown', (event) => {
+    console.log(event.key)
     switch (event.key){
         case 'd':
-            keys.d.pressed = true;
-            lastKey = 'd'
+            keys.d.pressed = true
+            lastPressedKey = 'd'
         break
         case 'a':
-            keys.a.pressed = true;
-            lastKey = 'a'
+            keys.a.pressed = true
+            lastPressedKey = 'a'
         break
-        // case 's':
-        //     player.velocity.y + 30;
-        // break
-        // case 'w':
-        //     player.position.y -= 20;
+        case 'w':
+            player.velocity.y = -10
+        break
+
+        //Enemy movement
+
     }
 
-    console.log(event)
+    // console.log(event)
     console.log(event.key)
-    const right = event[key] === 'k'
+    // const right = event[key] === 'k'
 })
 document.addEventListener('keyup', (event) => {
     switch (event.key){
         case 'd':
-            keys.d.pressed = false;
+            keys.d.pressed = false
+
         break
         case 'a':
-            keys.a.pressed = false;
+            keys.a.pressed = false
         break
-        // case 's':
-        //     player.position.y += 30;
-        //     player.position.y -= 20;
-        // break
         // case 'w':
-        //     player.position.y -= 20;
+        //     keys.w.pressed = false;
+        // break
+ 
     }
 
-    console.log(event)
-    console.log(event.key)
-    const right = event[key] === 'k'
+    // console.log(event)
+    // console.log(event.key)
+    // const right = event[key] === 'k'
 })
