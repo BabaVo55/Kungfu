@@ -16,7 +16,7 @@ class Sprite {
         this.height = 150
         this.width = 50
         this.lastPressedKey;
-        this.attackBoxPlayer = {
+        this.attackBox = {
             position: this.position,
             width: 100,
             height: 10,
@@ -44,11 +44,11 @@ class Sprite {
         //Attack Box
         if (this.type === 'player'){
             c.fillStyle = 'yellow'
-            c.fillRect(this.attackBoxPlayer.position.x + this.attackBoxPlayer.offset, this.attackBoxPlayer.position.y, this.attackBoxPlayer.width, this.attackBoxPlayer.height)
+            c.fillRect(this.attackBox.position.x + this.attackBox.offset, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
 
         }else{
             c.fillStyle = 'white'
-            c.fillRect(this.attackBoxPlayer.player.specs.position.x - 100, this.attackBoxPlayer.player.specs.position.y + 30, this.attackBoxPlayer.player.specs.width, this.attackBoxPlayer.player.specs.height)
+            c.fillRect(this.attackBox.player.specs.position.x - 100, this.attackBox.player.specs.position.y + 30, this.attackBox.player.specs.width, this.attackBox.player.specs.height)
 
         }
     }
@@ -164,10 +164,10 @@ function animate(){
 
     //Collision Detection System
 
-    if (player.attackBoxPlayer.position.x + player.attackBoxPlayer.width + player.attackBoxPlayer.offset >= enemy.position.x && 
-        player.attackBoxPlayer.position.x <= enemy.position.x + enemy.width && 
-        player.attackBoxPlayer.position.y + player.attackBoxPlayer.height >= enemy.position.y && 
-        player.attackBoxPlayer.position.y <= enemy.position.y + enemy.height && player.isAttacking){
+    if (player.attackBox.position.x + player.attackBox.width + player.attackBox.offset >= enemy.position.x && 
+        player.attackBox.position.x <= enemy.position.x + enemy.width && 
+        player.attackBox.position.y + player.attackBox.height >= enemy.position.y && 
+        player.attackBox.position.y <= enemy.position.y + enemy.height && player.isAttacking){
         console.log('health down by 10')
     } 
 }
