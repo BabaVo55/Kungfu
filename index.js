@@ -172,8 +172,11 @@ function animate(){
 
     if (rectangularCollision({rectangle1:player, rectangle2:enemy}) && player.isAttacking){
         player.isAttacking = false
-        console.log('health down by 10')
-    } 
+        console.log('ENEMY health down by 10')
+    } else if(rectangularCollision({rectangle1:enemy, rectangle2:player}) && enemy.isAttacking){
+        enemy.isAttacking = false;
+        console.log('PLAYER health down by 10')
+    }
 }
 
 
@@ -207,9 +210,15 @@ document.addEventListener('keydown', (event) => {
             enemy.velocity.y = -20
         break
 
-        // Attack command
+        // PlayerAttack command
         case ' ':
             player.attack()
+        break
+
+        // EnemyAttack command
+        case 'ArrowDown':
+            enemy.attack()
+        break
     }
 
     // console.log(event)
