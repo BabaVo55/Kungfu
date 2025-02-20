@@ -33,12 +33,8 @@ class Sprite {
             }
 
         }
-        // this.attackBoxEnemy = {
-        //     position: this.position,
-        //     width: 100,
-        //     height: 10,
-        // }
         this.health = 100;
+        this.isAttacking
     }
 
     draw(){
@@ -67,8 +63,15 @@ class Sprite {
         } else {
             this.velocity.y += gravity;
         }
-    }
 
+    }
+    attack(){
+        this.isAttacking = true;
+
+        setTimeout(() => {
+            this.isAttacking = false
+        }, 100)
+    }
 
 }
 
@@ -162,7 +165,7 @@ function animate(){
     //Collision Detection System
 
     if (player.attackBoxPlayer.position.x + player.attackBoxPlayer.width + player.attackBoxPlayer.offset >= enemy.position.x && 
-        player.attackBoxPlayer.position.x < enemy.position.x + enemy.width && 
+        player.attackBoxPlayer.position.x <= enemy.position.x + enemy.width && 
         player.attackBoxPlayer.position.y + player.attackBoxPlayer.height >= enemy.position.y && 
         player.attackBoxPlayer.position.y <= enemy.position.y + enemy.height && player.isAttacking){
         console.log('health down by 10')
@@ -198,6 +201,11 @@ document.addEventListener('keydown', (event) => {
         break
         case 'ArrowUp':
             enemy.velocity.y = -20
+        break
+
+        // Attack command
+        case ' ':
+            player.attack()
     }
 
     // console.log(event)
