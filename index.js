@@ -20,6 +20,7 @@ class Sprite {
             position: this.position,
             width: 100,
             height: 10,
+            offset: 50,
             player:{
                 specs: {
                  
@@ -161,8 +162,9 @@ function animate(){
     //Collision Detection System
 
     if (player.attackBoxPlayer.position.x + player.attackBoxPlayer.width + player.attackBoxPlayer.offset >= enemy.position.x && 
-        player.attackBoxPlayer.position.x < enemy.position.x + enemy.width && player.attackBoxPlayer.position.y + player.attackBoxEnemy.height >= enemy.position.y && 
-        player.attackBoxEnemy.position.y <= enemy.position.y + enemy.height && player.isAttacking){
+        player.attackBoxPlayer.position.x < enemy.position.x + enemy.width && 
+        player.attackBoxPlayer.position.y + player.attackBoxPlayer.height >= enemy.position.y && 
+        player.attackBoxPlayer.position.y <= enemy.position.y + enemy.height && player.isAttacking){
         console.log('health down by 10')
     } 
 }
