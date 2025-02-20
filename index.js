@@ -20,14 +20,23 @@ class Sprite {
             position: this.position,
             width: 100,
             height: 10,
-            offset: 50
+            player:{
+                specs: {
+                 
+                        position: this.position,
+                        width: 100,
+                        height: 10,
+                    
+                },
+                offset: 50
+            }
 
         }
-        this.attackBoxEnemy = {
-            position: this.position,
-            width: 100,
-            height: 10,
-        }
+        // this.attackBoxEnemy = {
+        //     position: this.position,
+        //     width: 100,
+        //     height: 10,
+        // }
         this.health = 100;
     }
 
@@ -42,7 +51,7 @@ class Sprite {
 
         }else{
             c.fillStyle = 'white'
-            c.fillRect(this.attackBoxEnemy.position.x - 100, this.attackBoxEnemy.position.y + 30, this.attackBoxEnemy.width, this.attackBoxEnemy.height)
+            c.fillRect(this.attackBoxPlayer.player.specs.position.x - 100, this.attackBoxPlayer.player.specs.position.y + 30, this.attackBoxPlayer.player.specs.width, this.attackBoxPlayer.player.specs.height)
 
         }
     }
@@ -84,7 +93,8 @@ const enemy = new Sprite({
     velocity : {
         x:0,
         y: 0
-    } 
+    },
+    type: ''
 })
 
 
@@ -150,7 +160,9 @@ function animate(){
 
     //Collision Detection System
 
-    if (player.attackBoxPlayer.position.x + player.attackBoxPlayer.width + player.attackBoxPlayer.offset >= enemy.position.x && player.attackBoxPlayer.position.x < enemy.position.x + enemy.width){
+    if (player.attackBoxPlayer.position.x + player.attackBoxPlayer.width + player.attackBoxPlayer.offset >= enemy.position.x && 
+        player.attackBoxPlayer.position.x < enemy.position.x + enemy.width && player.attackBoxPlayer.position.y + player.attackBoxEnemy.height >= enemy.position.y && 
+        player.attackBoxEnemy.position.y <= enemy.position.y + enemy.height && player.isAttacking){
         console.log('health down by 10')
     } 
 }
