@@ -42,17 +42,21 @@ class Sprite {
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
         
         //Attack Box
-        if (this.type === 'player'){
-            c.fillStyle = 'yellow'
-            c.fillRect(this.attackBox.position.x + this.attackBox.offset, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+        if (this.isAttacking){
 
-        }else{
-            c.fillStyle = 'white'
-            c.fillRect(this.attackBox.player.specs.position.x - 100, this.attackBox.player.specs.position.y + 30, this.attackBox.player.specs.width, this.attackBox.player.specs.height)
-
+            if (this.type === 'player'){
+                c.fillStyle = 'yellow'
+                c.fillRect(this.attackBox.position.x + this.attackBox.offset, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+    
+            }
+            else{
+                c.fillStyle = 'white'
+                c.fillRect(this.attackBox.player.specs.position.x - 100, this.attackBox.player.specs.position.y + 30, this.attackBox.player.specs.width, this.attackBox.player.specs.height)
+    
+            }
         }
     }
-
+ 
     update(){
         this.draw();
         this.position.x += this.velocity.x
@@ -168,6 +172,7 @@ function animate(){
         player.attackBox.position.x <= enemy.position.x + enemy.width && 
         player.attackBox.position.y + player.attackBox.height >= enemy.position.y && 
         player.attackBox.position.y <= enemy.position.y + enemy.height && player.isAttacking){
+        player.isAttacking = false
         console.log('health down by 10')
     } 
 }
