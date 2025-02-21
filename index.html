@@ -6,14 +6,24 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container" style="position: relative">
-        <div style="position: absolute;">
+    <div class="container" style="position: relative; display: inline-block;">
+        <div style="position: absolute; width:100%; display: flex; justify-content: space-between; align-items: center;">
             <!-- Player Health -->
-            <div style="background-color: yellow; height: 30px; width: 100px"></div>
+            <div style="background-color: yellow; height: 30px; width: 100%"></div>
             <!-- Timer -->
-            <div></div>
+            <div style="
+                background-color: red; 
+                width: 100px; 
+                height: 100px; 
+                display: flex;
+                flex-shrink: 0; 
+                align-items: center; 
+                justify-content: center;
+                font-size: 100px;">
+                        99
+            </div>
             <!-- Enemy Health -->
-            <div></div>
+            <div style="background-color: yellow; height: 30px; width: 100%;"></div>
         </div>   
         <canvas>
         </canvas>
