@@ -26,6 +26,7 @@ class Sprite {
             height: 10,
         },
         this.isAttacking
+        this.health = 100
     }
 
     draw(){
@@ -53,11 +54,12 @@ class Sprite {
         }
 
     }
+    
     attack(){
         this.isAttacking = true;
 
         setTimeout(() => {
-            this.isAttacking = false
+            this.isAttacking = false;
         }, 100)
     }
 
@@ -173,10 +175,18 @@ function animate(){
     if (rectangularCollision({rectangle1:player, rectangle2:enemy}) && player.isAttacking){
         player.isAttacking = false
         console.log('ENEMY health down by 10')
+        enemy.health -= 10
     } else if(rectangularCollision({rectangle1:enemy, rectangle2:player}) && enemy.isAttacking){
         enemy.isAttacking = false;
         console.log('PLAYER health down by 10')
+        player.health -= 10
     }
+    // if (player.health == 0){
+        
+    // }
+    // if (enemy.health == 0){
+
+    // }
 }
 
 
