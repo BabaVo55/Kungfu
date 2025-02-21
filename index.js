@@ -1,6 +1,9 @@
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
+const enemyHealth = document.getElementById('enemyHealth')
+const playerHealth = document.getElementById('playerHealth')
+
 canvas.width = 1024;
 canvas.height = 576;
 
@@ -175,11 +178,11 @@ function animate(){
     if (rectangularCollision({rectangle1:player, rectangle2:enemy}) && player.isAttacking){
         player.isAttacking = false
         console.log('ENEMY health down by 10')
-        enemy.health -= 10
+        enemyHealth.style.width = '20%'
     } else if(rectangularCollision({rectangle1:enemy, rectangle2:player}) && enemy.isAttacking){
         enemy.isAttacking = false;
         console.log('PLAYER health down by 10')
-        player.health -= 10
+        playerHealth.style.width = "20%"
     }
     // if (player.health == 0){
         
