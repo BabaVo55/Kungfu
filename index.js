@@ -4,6 +4,7 @@ const c = canvas.getContext('2d');
 const enemyHealth = document.getElementById('enemyHealth')
 const playerHealth = document.getElementById('playerHealth')
 
+// const timer = document.getElementById('timer')
 
 canvas.width = 1024;
 canvas.height = 576;
@@ -179,21 +180,30 @@ function animate(){
     if (rectangularCollision({rectangle1:player, rectangle2:enemy}) && player.isAttacking){
         player.isAttacking = false
         enemy.health -= 20
-        enemyHealth.style.width = enemy.health + '%'
+        enemyHealth.style.width =  enemy.health + '%'
     } else if(rectangularCollision({rectangle1:enemy, rectangle2:player}) && enemy.isAttacking){
         enemy.isAttacking = false;
         player.health -= 20
         playerHealth.style.width = player.health + '%'
     }
-    // if (player.health == 0){
-        
-    // }
-    // if (enemy.health == 0){
 
-    // }
+    // I THINK THIS MAKES MORE SENSE FOR INFINITE ANIMATION RATHER THAN ON TOP
+    // window.requestAnimationFrame(animate)
+
+} 
+
+let timer = 99
+function decreaseTimer(){
+    setTimeout(decreaseTimer, 1000)
+    if (timer > 0) {
+        timer--
+        document.getElementById('timer').innerHTML = timer
+    }
 }
 
 
+
+decreaseTimer()
 
 animate()
 document.addEventListener('keydown', (event) => {
