@@ -178,12 +178,12 @@ function animate(){
 
     if (rectangularCollision({rectangle1:player, rectangle2:enemy}) && player.isAttacking){
         player.isAttacking = false
-        console.log('ENEMY health down by 10')
-        enemyHealth.style.width = "20%"
+        enemy.health -= 20
+        enemyHealth.style.width = enemy.health + '%'
     } else if(rectangularCollision({rectangle1:enemy, rectangle2:player}) && enemy.isAttacking){
         enemy.isAttacking = false;
-        console.log('PLAYER health down by 10')
-        playerHealth.style.width = "20%"
+        player.health -= 20
+        playerHealth.style.width = player.health + '%'
     }
     // if (player.health == 0){
         
