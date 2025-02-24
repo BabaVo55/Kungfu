@@ -24,10 +24,11 @@
             space-between; 
             align-items: center;
             padding: 20px;
-            ">
-             <div style="border: 1px solid white; height: 100%; width: 100%;">
+            gap:10px
+        ">
+             <div style="border: 1px solid white; height: 100%; width: 100%; display: flex; flex-direction: row-reverse;">
                  <!-- Player Health -->
-                 <div id="playerHealth" style="background-color: yellow; height: 30px; width: 100%"></div>
+                 <div id="playerHealth" style="background-color: yellow; height: 30px; width: 100%;"></div>
              </div>
             <!-- Timer -->
             <div style="
@@ -41,9 +42,15 @@
                 font-size: 100px;">
                         99
             </div>
-            <div style="border: 1px solid white; height: 100%; width: 100%;">
+            <div 
+                style="border: 1px solid white;
+                height: 100%;
+                width: 100%;">
                 <!-- Enemy Health -->
-                <div id="enemyHealth" style="background-color: yellow; height: 30px; width: 100%;"></div>
+                <div 
+                    id="enemyHealth" 
+                    style="background-color: yellow; height: 30px; width: 100%"
+                ></div>
             </div>
         </div>   
         <canvas>
