@@ -141,6 +141,40 @@ function rectangularCollision({
     )
 }
 
+function determineWinner({player, enemy}){
+    
+        if (player.health === enemy.health) {
+            document.getElementById('displayText').innerText = 'Its A Tie!!!'
+        }
+
+        else if (player.health > enemy.health){
+            document.getElementById('displayText').innerText = "Player 1 Wins"
+        }
+        
+        else if (enemy.health > enemy.health){
+            document.getElementById('displayText').innerHTML = 'Player 2 Wins';
+        }
+}
+
+let timer = 5
+function decreaseTimer(){
+    
+    if (timer > 0) {
+        timer--
+        document.getElementById('timer').innerHTML = timer
+        setTimeout(decreaseTimer, 1000)
+    } 
+
+     if (timer === 0){
+        document.getElementById('displayText').style.display = 'flex'
+        determineWinner({player:player, enemy:enemy})
+    }
+}
+
+
+decreaseTimer()
+
+
 function animate(){
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black';
@@ -187,39 +221,35 @@ function animate(){
         playerHealth.style.width = player.health + '%'
     }
 
+    // Game over
+    if (enemy.health <= 0 || player.health <= 0){
+        document.getElementById('displayText').style.display = 'flex'
+        document.getElementById('displayText').innerText = 'Game Over'
+        if (enemy.health === 100){
+            document.getElementById('displayText').innerText = 'Flawless Victory';
+
+        } else if(player.health === 100){
+            document.getElementById('displayText').innerText = 'Perfect Victory';
+        }
+    }
+    // if (enemy.health === 100 && player.health === 0){
+    //     document.getElementById('displayText').style.display = 'flex'
+    //     document.getElementById('displayText').innerText = 'Flawless victory'
+    // }
+    // if (player.health === 100 && enemy.health === 0){
+    //     document.getElementById('displayText').style.display = 'flex'
+    //     document.getElementById('displayText'). innerText = 'Perfect'
+    // }
+
     // I THINK THIS MAKES MORE SENSE FOR INFINITE ANIMATION RATHER THAN ON TOP
     // window.requestAnimationFrame(animate)
 
 } 
 
 
-let timer = 6
-function decreaseTimer(){
-    
-    if (timer > 0) {
-        timer--
-        document.getElementById('timer').innerHTML = timer
-        setTimeout(decreaseTimer, 1000)
-    } 
-
-    if (timer === 0 && player.health === enemy.health) {
-        document.getElementById('displayText').innerText = 'Its A Tie!!!'
-        document.getElementById('displayText').style.display = 'flex'
-    }
-}
-
-
-// setTimeout(() => {
-//     while (timer.innerHTML > 0){
-//         timer.innerText-= 1
-//     }
-// },1000)
-
-
-
-decreaseTimer()
-
 animate()
+
+
 document.addEventListener('keydown', (event) => {
     console.log(event.key)
     switch (event.key){
