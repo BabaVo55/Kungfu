@@ -192,14 +192,28 @@ function animate(){
 
 } 
 
-let timer = 99
+
+let timer = 6
 function decreaseTimer(){
-    setTimeout(decreaseTimer, 1000)
+    
     if (timer > 0) {
         timer--
         document.getElementById('timer').innerHTML = timer
+        setTimeout(decreaseTimer, 1000)
+    } 
+
+    if (timer === 0 && player.health === enemy.health) {
+        document.getElementById('displayText').innerText = 'Its A Tie!!!'
+        document.getElementById('displayText').style.display = 'flex'
     }
 }
+
+
+// setTimeout(() => {
+//     while (timer.innerHTML > 0){
+//         timer.innerText-= 1
+//     }
+// },1000)
 
 
 
