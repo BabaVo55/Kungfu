@@ -141,33 +141,39 @@ function rectangularCollision({
     )
 }
 
-function determineWinner({player, enemy}){
-    
-        if (player.health === enemy.health) {
-            document.getElementById('displayText').innerText = 'Its A Tie!!!'
-        }
 
-        else if (player.health > enemy.health){
-            document.getElementById('displayText').innerText = "Player 1 Wins"
-        }
-        
-        else if (enemy.health > enemy.health){
-            document.getElementById('displayText').innerHTML = 'Player 2 Wins';
-        }
+
+function determineWinner({player, enemy, timerId}){
+    clearTimeout(timerId)
+    if (player.health === enemy.health) {
+        document.getElementById('displayText').innerText = 'Its A Tie!!!'
+    }
+    
+    else if (player.health > enemy.health){
+        document.getElementById('displayText').innerText = "Player 1 Wins"
+    }
+    
+    else if (enemy.health > player.health){
+        document.getElementById('displayText').innerHTML = 'Player 2 Wins';
+    }
+    
 }
 
-let timer = 5
+let timer = 7
+let timerId;
+
+
 function decreaseTimer(){
     
     if (timer > 0) {
         timer--
         document.getElementById('timer').innerHTML = timer
-        setTimeout(decreaseTimer, 1000)
+        timerId = setTimeout(decreaseTimer, 1000)
     } 
 
      if (timer === 0){
         document.getElementById('displayText').style.display = 'flex'
-        determineWinner({player:player, enemy:enemy})
+        determineWinner({player:player, enemy:enemy, timerId:timerId})
     }
 }
 
@@ -223,6 +229,7 @@ function animate(){
 
     // Game over
     if (enemy.health <= 0 || player.health <= 0){
+        determineWinner({player:player, enemy:enemy, timerId:timerId})
         document.getElementById('displayText').style.display = 'flex'
         document.getElementById('displayText').innerText = 'Game Over'
         if (enemy.health === 100){
@@ -231,15 +238,8 @@ function animate(){
         } else if(player.health === 100){
             document.getElementById('displayText').innerText = 'Perfect Victory';
         }
+
     }
-    // if (enemy.health === 100 && player.health === 0){
-    //     document.getElementById('displayText').style.display = 'flex'
-    //     document.getElementById('displayText').innerText = 'Flawless victory'
-    // }
-    // if (player.health === 100 && enemy.health === 0){
-    //     document.getElementById('displayText').style.display = 'flex'
-    //     document.getElementById('displayText'). innerText = 'Perfect'
-    // }
 
     // I THINK THIS MAKES MORE SENSE FOR INFINITE ANIMATION RATHER THAN ON TOP
     // window.requestAnimationFrame(animate)
