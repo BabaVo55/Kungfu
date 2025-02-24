@@ -14,6 +14,31 @@ c.fillRect(0,0,canvas.width,canvas.height)
 const gravity = 0.7
 
 class Sprite {
+    constructor({position}){
+        this.position = position;
+        this.height = 150
+        this.width = 50
+
+
+
+    }
+
+    draw(){
+  
+        
+        // Attack Box
+
+    }
+ 
+    update(){
+        this.draw();
+    }
+    
+
+
+}
+
+class Fighter {
     constructor({position, velocity, offset}){
         this.position = position;
         this.velocity = velocity;
@@ -71,7 +96,10 @@ class Sprite {
 }
 
 
-const player = new Sprite({
+
+
+
+const player = new Fighter({
     position : { 
         x:200,
         y:0
@@ -86,7 +114,7 @@ const player = new Sprite({
     }
 })
 
-const enemy = new Sprite({
+const enemy = new Fighter({
     position : {
         x: 500,
         y: 100,
@@ -158,7 +186,7 @@ function determineWinner({player, enemy, timerId}){
     }
     
 }
-
+       
 let timer = 7
 let timerId;
 
