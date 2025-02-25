@@ -1,3 +1,6 @@
+// import { Sprite, Fighter } from './js/classes.js';
+
+
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
@@ -13,14 +16,14 @@ c.fillRect(0,0,canvas.width,canvas.height)
 
 const gravity = 0.7
 
+
+
+
 class Sprite {
     constructor({position}){
         this.position = position;
         this.height = 150
         this.width = 50
-
-
-
     }
 
     draw(){
@@ -33,9 +36,6 @@ class Sprite {
     update(){
         this.draw();
     }
-    
-
-
 }
 
 class Fighter {
@@ -94,10 +94,6 @@ class Fighter {
     }
 
 }
-
-
-
-
 
 const player = new Fighter({
     position : { 
@@ -187,7 +183,7 @@ function determineWinner({player, enemy, timerId}){
     
 }
        
-let timer = 7
+let timer = 20
 let timerId;
 
 
@@ -263,9 +259,13 @@ function animate(){
         document.getElementById('displayText').innerText = 'Game Over'
         if (enemy.health === 100){
             document.getElementById('displayText').innerText = 'Flawless Victory';
+            player.height = 0
+            player.width = 0
 
         } else if(player.health === 100){
             document.getElementById('displayText').innerText = 'Perfect Victory';
+            enemy.height = 0
+            enemy.width = 0
         }
 
     }
