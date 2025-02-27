@@ -18,7 +18,7 @@ const gravity = 0.7
 
 
 
-
+// Background
 const background = new Sprite({
     position: {
         x:0,
@@ -28,7 +28,7 @@ const background = new Sprite({
 })
 
 
-
+// Player 1
 const player = new Fighter({
     position : { 
         x:200,
@@ -44,6 +44,7 @@ const player = new Fighter({
     }
 })
 
+// Player 2
 const enemy = new Fighter({
     position : {
         x: 500,
