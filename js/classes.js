@@ -1,3 +1,5 @@
+
+// Background Class
 class Sprite {
     constructor({position, imageSrc}){
         this.position = position;
@@ -17,8 +19,10 @@ class Sprite {
     }
 }
 
+
+// Character Class
 class Fighter {
-    constructor({position, velocity, offset}){
+    constructor({position, velocity, offset, color}){
         this.position = position;
         this.velocity = velocity;
         this.height = 150
@@ -34,12 +38,13 @@ class Fighter {
             width: 100,
             height: 10,
         },
+        this.color = color;
         this.isAttacking
         this.health = 100
     }
 
     draw(){
-        c.fillStyle = 'red'
+        c.fillStyle = this.color
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
         
         // Attack Box
