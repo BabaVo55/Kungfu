@@ -18,19 +18,17 @@ class Sprite {
     draw(){
         c.drawImage(
             this.image,
-            this.framesCurrent * (this.image.width / this.framesMax),
-            0,
-            this.image.width / this.framesMax,
-            this.image.height,
+//          CROP 
+            this.framesCurrent * (this.image.width / this.framesMax), // sx - 0 * width / 6 to split the sprite into 6 - But apparently this does'nt just cut moves???
+            0,                                                        // sy - 0 as we don't want to crop vertically as height is fine
+            this.image.width / this.framesMax,                        // sWidth - 
+            this.image.height,                                        // sHeight - 
+
             this.position.x, 
             this.position.y, 
-            (this.image.width / this.framesMax)* this.scale, 
+            (this.image.width / this.framesMax) * this.scale, 
             this.image.height * this.scale
         )
-
-    }
-
-    scrollThrough(){
 
     }
  
