@@ -29,8 +29,26 @@ class Sprite {
             (this.image.width / this.framesMax) * this.scale, 
             this.image.height * this.scale
         )
-
     }
+
+    // draw() {
+    //     c.drawImage(
+    //         this.image, // The source image (like shop.png)
+    
+    //         // CROP (which part of the image to draw — defines the "frame" to show)
+    //         this.framesCurrent * (this.image.width / this.framesMax), // sx: Start cropping at the current frame's X position
+    //         0,                                                        // sy: Always 0 because we only have one row of frames
+    //         this.image.width / this.framesMax,                        // sWidth: Width of one frame (total width ÷ frames)
+    //         this.image.height,                                         // sHeight: Full height of the image (no vertical cropping)
+    
+    //         // DRAW (where and how big to draw the cropped frame on canvas)
+    //         this.position.x,                                           // dx: X position on the canvas
+    //         this.position.y,                                           // dy: Y position on the canvas
+    //         (this.image.width / this.framesMax) * this.scale,          // dWidth: Frame width scaled by the "scale" value
+    //         this.image.height * this.scale                             // dHeight: Frame height scaled by the "scale" value
+    //     );
+    // }
+    
  
     update(){
         this.draw();
