@@ -20,8 +20,8 @@ class Sprite {
 
 
     draw(){
-        const height = 200
-        const width = 200
+        const height = 100
+        const width = 60
         // STAGE 1
         // c.drawImage(
         //     this.image,
@@ -32,36 +32,40 @@ class Sprite {
         // )
             
         // STAGE 2
-        // c.drawImage(
-        //     this.image,
+        c.drawImage(
+            this.image,
 
         // Added 4 more arguments
-        //     0,
-        //     0,
-        //     this.image.width,
-        //     this.image.height,
+            0,                          // where to start cropping X axis (top left)
+            0,                          // where to start cropping y axis (top left)
+            this.image.width,           // how far to crop horizontally
+            this.image.height,          // how far to crop vertically 
 
-        //     this.position.x,
-        //     this.position.y,
-        //     this.image.width * this.scale,
-        //     this.image.height * this.scale
-        // )
+            this.position.x,            // where to position rendered image on the x axis;
+            this.position.y,            // where to position rendered image on the y axis;
+            this.image.width * this.scale,  // horizontal size of rendered image
+            this.image.height * this.scale  // vertical size of rendered image
+        )
 
-        // STAGE 2 Experiment
+
+        // STAGE 2.1 Experiment
         // c.drawImage(
-        //     this.image,
-
-        // Added 4 more arguments
-        //     0,
-        //     0,
-        //     this.image.width,
-        //     this.image.height,
-
-        //     this.position.x,
-        //     this.position.y,
-        //     this.image.width * this.scale,
-        //     this.image.height * this.scale
-        // )
+        // this.image,       // The source image to draw (can be an <img>, <video>, or another canvas)
+        
+        // // 4 extra arguments
+        // // Cropping arguments (define what part of the source image to crop)
+        // 0,                // sx: X-coordinate of the top-left corner of the crop area (start cropping from here)
+        // 0,                // sy: Y-coordinate of the top-left corner of the crop area
+        // width,            // sw: Width of the crop area (how wide the cropped section is)
+        // height,           // sh: Height of the crop area (how tall the cropped section is)
+        
+        // // Drawing arguments (define where and how to draw the cropped area onto the canvas)
+        // this.position.x,  // dx: X-coordinate on the canvas where the cropped image will be drawn
+        // this.position.y,  // dy: Y-coordinate on the canvas where the cropped image will be drawn
+        // 200, // dw: Width to draw the image on the canvas (can scale the crop up or down)
+        // 200// dh: Height to draw the image on the canvas
+        // );
+        
         
         // STAGE 3
         // c.drawImage(
