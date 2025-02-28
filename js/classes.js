@@ -32,18 +32,32 @@ class Sprite {
         // )
             
         // STAGE 2
+        // c.drawImage(
+        //     this.image,
+
+        // // Added 4 more arguments
+        //     0,                          // where to start cropping X axis (top left)
+        //     0,                          // where to start cropping y axis (top left)
+        //     this.image.width,           // how far to crop horizontally
+        //     this.image.height,          // how far to crop vertically 
+
+        //     this.position.x,            // where to position rendered image on the x axis;
+        //     this.position.y,            // where to position rendered image on the y axis;
+        //     this.image.width * this.scale,  // horizontal size of rendered image
+        //     this.image.height * this.scale  // vertical size of rendered image
+        // )
         c.drawImage(
             this.image,
 
         // Added 4 more arguments
-            0,                          // where to start cropping X axis (top left)
+            this.framesCurrent * this.image.width / this.framesMax,                         // where to start cropping X axis (top left)
             0,                          // where to start cropping y axis (top left)
-            this.image.width,           // how far to crop horizontally
+            this.image.width / this.framesMax ,           // how far to crop horizontally
             this.image.height,          // how far to crop vertically 
 
             this.position.x,            // where to position rendered image on the x axis;
             this.position.y,            // where to position rendered image on the y axis;
-            this.image.width * this.scale,  // horizontal size of rendered image
+            this.image.width / this.framesMax * this.scale,  // horizontal size of rendered image
             this.image.height * this.scale  // vertical size of rendered image
         )
 
@@ -123,7 +137,7 @@ class Sprite {
         this.framesElapsed++
         if (this.framesElapsed % this.framesHold === 0){
 
-            if (this.framesCurrent < this.framesMax -1){
+            if (this.framesCurrent < this.framesMax - 1){
                 this.framesCurrent++
             } else {
                 this.framesCurrent = 0
