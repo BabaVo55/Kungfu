@@ -31,12 +31,12 @@ const background = new Sprite({
 
 const shop = new Sprite({
     position: {
-        x:30,
+        x:600,
         y:127
     },
     imageSrc: './img/shop.png',
     scale: 2.75,
-    framesMax: 2
+    framesMax: 6
 
 })
 
@@ -54,7 +54,10 @@ const player = new Fighter({
         x: 50,
         y:0
     },
-    color: 'red'
+    color: 'red',
+    imageSrc: './img/samuraiMack/Idle.png',
+    framesMax: 8,
+    scale: 1.5
 })
 
 // Player 2
