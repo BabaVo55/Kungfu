@@ -44,20 +44,20 @@ const shop = new Sprite({
 const player = new Fighter({
     position : { 
         x:200,
-        y:0
+        y:200
     },
     velocity : {
         x:0,
         y: 0
     },
-    offset: {
-        x: 50,
-        y:0
-    },
-    color: 'red',
+    // color: 'red',
     imageSrc: './img/samuraiMack/Idle.png',
     framesMax: 8,
-    scale: 1.5
+    scale: 2,
+    offset: {
+        x: 215,
+        y: 97
+    }
 })
 
 // Player 2
@@ -71,11 +71,16 @@ const enemy = new Fighter({
         x:0,
         y: 0
     },
+    // color: 'blue',
+    imageScr: './img/kenji/Idle.png',
+    framesMax: 8,
+    scale: 2,
     offset: {
         x: -100,
         y:0
-    },
-    color: 'blue'
+    }
+    
+
 })
 
 
@@ -117,7 +122,7 @@ function animate(){
     background.update()
     shop.update()
     player.update()
-    enemy.update()
+    // enemy.update()
 
     //ALT VERSION FOR WHEN WE ARE NOT HOLDING DOWN ON A KEY - RESET x
     // player.velocity.x = 0;
@@ -127,6 +132,7 @@ function animate(){
     // Player Movement Logic
     if (keys.a.pressed && player.lastPressedKey === 'a'){
         player.velocity.x = -10;
+        
     } 
     else if (keys.d.pressed && player.lastPressedKey === 'd') {
         player.velocity.x = 10;
