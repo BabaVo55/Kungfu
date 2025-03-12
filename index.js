@@ -57,6 +57,16 @@ const player = new Fighter({
     offset: {
         x: 215,
         y: 97
+    }, 
+    sprites: {
+        idle: {
+            imageSrc: './img/samuraiMack/Idle.png',
+            framesMax: 8
+        },
+        run: {
+            imageSrc: './img/samuraiMack/Run.png',
+            framesMax: 8
+        }
     }
 })
 
@@ -197,10 +207,12 @@ document.addEventListener('keydown', (event) => {
         case 'd':
             keys.d.pressed = true
             player.lastPressedKey = 'd'
+            player.image = player.sprites.run.image
         break
         case 'a':
             keys.a.pressed = true
              player.lastPressedKey = 'a'
+             player.image = player.sprites.run.image
         break
         case 'w':
             player.velocity.y = -20
@@ -214,6 +226,7 @@ document.addEventListener('keydown', (event) => {
         case 'ArrowLeft':
             keys.ArrowLeft.pressed = true;
             enemy.lastPressedKey = 'ArrowLeft'
+            
         break
         case 'ArrowUp':
             enemy.velocity.y = -20
