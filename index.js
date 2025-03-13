@@ -251,10 +251,12 @@ document.addEventListener('keyup', (event) => {
     switch (event.key){
         case 'd':
             keys.d.pressed = false
+            player.image = player.sprites.idle.image
 
         break
         case 'a':
             keys.a.pressed = false
+            player.image = player.sprites.idle.image
         break
 
         //Enemy movement
