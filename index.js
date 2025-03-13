@@ -66,6 +66,10 @@ const player = new Fighter({
         run: {
             imageSrc: './img/samuraiMack/Run.png',
             framesMax: 8
+        },
+        jump: {
+            imageSrc: './img/samuraiMack/Jump.png',
+            framesMax: 2
         }
     }
 })
@@ -141,7 +145,6 @@ function animate(){
 
 
     // Player Movement Logic
-    player.image = player.sprites.idle.image
     if (keys.a.pressed && player.lastPressedKey === 'a'){
         player.velocity.x = -7;
         
@@ -151,6 +154,7 @@ function animate(){
     } 
     else {
         player.velocity.x = 0;
+        
     }
     
     // Enemy Movement Logic
@@ -221,6 +225,9 @@ document.addEventListener('keydown', (event) => {
         break
         case 'w':
             player.velocity.y = -20
+            player.image = player.sprites.jump.image
+            player.framesMax = player.sprites.jump.framesMax
+
         break
 
         //Enemy movement
@@ -256,9 +263,13 @@ document.addEventListener('keyup', (event) => {
     switch (event.key){
         case 'd':
             keys.d.pressed = false
+            player.image = player.sprites.idle.image
+
         break
         case 'a':
             keys.a.pressed = false
+            player.image = player.sprites.idle.image
+
         break
 
         //Enemy movement
