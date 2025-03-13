@@ -14,10 +14,13 @@
     <div 
         class="container" 
         style="
+            /* In conjunction with the display absolute underneath, the container must be relative to ensure everything sits inside container */
             position: relative; 
+            /* Without inline block, the life bars divs would extend out of the view screen */
             display: inline-block;
         ">
         <div style="
+            /* Without absolute positioning the health bar again would be in block formate underneath the canvas view */
             position: absolute; 
             width:100%; display: 
             flex; justify-content: 
