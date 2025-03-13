@@ -53,10 +53,10 @@ const player = new Fighter({
     // color: 'red',
     imageSrc: './img/samuraiMack/Idle.png',
     framesMax: 8,
-    scale: 2,
+    scale: 2.5,
     offset: {
         x: 215,
-        y: 97
+        y: 155
     }, 
     sprites: {
         idle: {
@@ -140,21 +140,31 @@ function animate(){
     // enemy.update()
 
     //ALT VERSION FOR WHEN WE ARE NOT HOLDING DOWN ON A KEY - RESET x
-    // player.velocity.x = 0;
-    // enemy.velocity.x = 0
+    player.velocity.x = 0;
+    enemy.velocity.x = 0
 
 
     // Player Movement Logic
+    // player.switchSprite('idle')d
     if (keys.a.pressed && player.lastPressedKey === 'a'){
         player.velocity.x = -7;
+        player.framesMax = player.sprites.run.framesMax
+        // player.switchSprite(run)
         
     } 
     else if (keys.d.pressed && player.lastPressedKey === 'd') {
         player.velocity.x = 7;
-    } 
-    else {
-        player.velocity.x = 0;
+        player.framesMax = player.sprites.run.framesMax
+        // player.switchSprite(run)
         
+    } 
+
+    if (player.velocity.y < 0){
+    //    player.switchSprite(jump)
+    if (player.image !== player.sprites.jump.image){
+        player.image = player.sprites.jump.image
+        player.framesMax = player.sprites.jump.framesMax
+    }
     }
     
     // Enemy Movement Logic
@@ -164,9 +174,11 @@ function animate(){
     else if (keys.ArrowRight.pressed && enemy.lastPressedKey === 'ArrowRight'){
         enemy.velocity.x = 10;
     } 
-    else {
-        enemy.velocity.x = 0;
-    }
+
+    
+    // else {
+    //     enemy.velocity.x = 0;
+    // }
 
     //Collision Detection System
 
@@ -225,8 +237,7 @@ document.addEventListener('keydown', (event) => {
         break
         case 'w':
             player.velocity.y = -20
-            player.image = player.sprites.jump.image
-            player.framesMax = player.sprites.jump.framesMax
+
 
         break
 
