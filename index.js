@@ -14,7 +14,7 @@ canvas.height = 576;
 
 c.fillRect(0,0,canvas.width,canvas.height)
 
-const gravity = 0.7
+const gravity = 1
 
 
 
@@ -132,6 +132,7 @@ function animate(){
     background.update()
     shop.update()
     player.update()
+    
     // enemy.update()
 
     //ALT VERSION FOR WHEN WE ARE NOT HOLDING DOWN ON A KEY - RESET x
@@ -140,12 +141,13 @@ function animate(){
 
 
     // Player Movement Logic
+    player.image = player.sprites.idle.image
     if (keys.a.pressed && player.lastPressedKey === 'a'){
-        player.velocity.x = -10;
+        player.velocity.x = -7;
         
     } 
     else if (keys.d.pressed && player.lastPressedKey === 'd') {
-        player.velocity.x = 10;
+        player.velocity.x = 7;
     } 
     else {
         player.velocity.x = 0;
@@ -177,8 +179,10 @@ function animate(){
     // Game over
     if (enemy.health <= 0 || player.health <= 0){
         determineWinner({player:player, enemy:enemy, timerId:timerId})
+
         document.getElementById('displayText').style.display = 'flex'
         document.getElementById('displayText').innerText = 'Game Over'
+
         if (enemy.health === 100){
             document.getElementById('displayText').innerText = 'Flawless Victory';
             player.height = 0
@@ -202,6 +206,7 @@ animate()
 
 
 document.addEventListener('keydown', (event) => {
+    
     console.log(event.key)
     switch (event.key){
         case 'd':
@@ -211,8 +216,8 @@ document.addEventListener('keydown', (event) => {
         break
         case 'a':
             keys.a.pressed = true
-             player.lastPressedKey = 'a'
-             player.image = player.sprites.run.image
+            player.lastPressedKey = 'a'
+            player.image = player.sprites.run.image
         break
         case 'w':
             player.velocity.y = -20
@@ -251,12 +256,9 @@ document.addEventListener('keyup', (event) => {
     switch (event.key){
         case 'd':
             keys.d.pressed = false
-            player.image = player.sprites.idle.image
-
         break
         case 'a':
             keys.a.pressed = false
-            player.image = player.sprites.idle.image
         break
 
         //Enemy movement

@@ -41,7 +41,7 @@ function decreaseTimer(){
         timer--
         document.getElementById('timer').innerHTML = timer
         timerId = setTimeout(decreaseTimer, 1000)
-        console.log(timerId)
+        // console.log(timerId)
     } 
 
      if (timer === 0){
